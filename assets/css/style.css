@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: nowrap column;
+    align-items: center;
+    justify-content: center;
+}
+
+#tabuleiro {
+    width: 300px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 300px;
+    grid-template-rows: 100px 100px;
+}
+
+.fileira {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-flow: nowrap row;
+
+}
+
+.casa {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-flow: nowrap row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#casa1,
+#casa2,
+#casa3,
+#casa4,
+#casa5,
+#casa6 {
+    border-bottom: 3px solid black;
+}
+
+#casa1,
+#casa4,
+#casa7 {
+    border-right: 3px solid black;
+}
+
+#casa3,
+#casa6,
+#casa9 {
+    border-left: 3px solid black;
+}
+
+.playerOne {
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    color: white;
+    outline: 8px solid blue;
+}
+
+.playerTwo {
+    height: 75px;
+    width: 75px;
+}
+
+.playerTwo:after {
+    content: "\274c";
+    font-size: 55px; 
+}
+
+.casa:hover {
+    background-color: lightgray;
+}
