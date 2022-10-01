@@ -1,53 +1,53 @@
-const casa = Array.from(document.querySelectorAll('.casa'));
+const square = Array.from(document.querySelectorAll('.square'));
 let jogador = Array.from(document.querySelectorAll('.player'));
-let figura = Array.from(document.querySelectorAll('.figure'));
-const players = [1, 2];
+let figure = Array.from(document.querySelectorAll('.figure'));
+const playerID = [1, 2];
 
-let sessao = true;
-let jogada;
-let reiniciar = document.querySelector('#btn-reiniciar');
-let vencedor = null;
+let session = true;
+let flag;
+let reset = document.querySelector('#btn-reset');
+let winner = null;
 
-let sortear = Math.floor(Math.random() * players.length);
+let draw = Math.floor(Math.random() * playerID.length);
 
-
-reiniciar.addEventListener('click', function (evt) {
+reset.addEventListener('click', function (evt) {
     evt.preventDefault();
     location.reload();
 }); 
 
-function changeColor (sortear) {
-    if (sortear == 0) {
+function changeColor (draw) {
+    if (draw == 0) {
         jogador[0].style.border = '5px solid #D90404';
         jogador[0].style.backgroundColor = '#D90404';
-        figura[0].style.color = 'white';
+        figure[0].style.color = 'white';
         jogador[1].style.border = '5px solid #6B98BF';
         jogador[1].style.backgroundColor = '#A0BED9';
-        figura[1].style.color = '#F24B78';
+        figure[1].style.color = '#F24B78';
     } else {
         jogador[1].style.border = '5px solid #D90404';
         jogador[1].style.backgroundColor = '#D90404';
-        figura[1].style.color = 'white';
+        figure[1].style.color = 'white';
         jogador[0].style.border = '5px solid #6B98BF';
         jogador[0].style.backgroundColor = '#A0BED9';
-        figura[0].style.color = '#4C48D9';
+        figure[0].style.color = '#4C48D9';
     }
 }
 
-function mostrarVencedor (vencedor) {
-    if (vencedor == 0)
+function showWinner (winner) {
+    
+    if (winner == 0)
     {
-        setTimeout(() => {  
+        setTimeout(() => {
             alert('Bolinha ganhou');
-        }, 2000);
+        }, 2000); 
     }
-    else if (vencedor == 1)
+    else if (winner == 1)
     {
         setTimeout(() => {
             alert('Xis ganhou');
         }, 2000);
     }
-    else
+    else if (winner == null)
     {
         setTimeout(() => {
             alert('Empate');
@@ -56,291 +56,299 @@ function mostrarVencedor (vencedor) {
 }
 
 function verificarVitoria () {
-    if (casa[0].innerHTML === '<div class="playerOne"></div>' && casa[1].innerHTML === '<div class="playerOne"></div>' && casa[2].innerHTML === '<div class="playerOne"></div>'
-    || casa[3].innerHTML === '<div class="playerOne"></div>' && casa[4].innerHTML === '<div class="playerOne"></div>' && casa[5].innerHTML === '<div class="playerOne"></div>'
-    || casa[6].innerHTML === '<div class="playerOne"></div>' && casa[7].innerHTML === '<div class="playerOne"></div>' && casa[8].innerHTML === '<div class="playerOne"></div>'
-    || casa[0].innerHTML === '<div class="playerOne"></div>' && casa[3].innerHTML === '<div class="playerOne"></div>' && casa[6].innerHTML === '<div class="playerOne"></div>'
-    || casa[1].innerHTML === '<div class="playerOne"></div>' && casa[4].innerHTML === '<div class="playerOne"></div>' && casa[7].innerHTML === '<div class="playerOne"></div>'
-    || casa[2].innerHTML === '<div class="playerOne"></div>' && casa[5].innerHTML === '<div class="playerOne"></div>' && casa[8].innerHTML === '<div class="playerOne"></div>'
-    || casa[0].innerHTML === '<div class="playerOne"></div>' && casa[4].innerHTML === '<div class="playerOne"></div>' && casa[8].innerHTML === '<div class="playerOne"></div>'
-    || casa[2].innerHTML === '<div class="playerOne"></div>' && casa[4].innerHTML === '<div class="playerOne"></div>' && casa[6].innerHTML === '<div class="playerOne"></div>'
+    if (square[0].innerHTML === '<div class="playerOne"></div>' && square[1].innerHTML === '<div class="playerOne"></div>' && square[2].innerHTML === '<div class="playerOne"></div>'
+    || square[3].innerHTML === '<div class="playerOne"></div>' && square[4].innerHTML === '<div class="playerOne"></div>' && square[5].innerHTML === '<div class="playerOne"></div>'
+    || square[6].innerHTML === '<div class="playerOne"></div>' && square[7].innerHTML === '<div class="playerOne"></div>' && square[8].innerHTML === '<div class="playerOne"></div>'
+    || square[0].innerHTML === '<div class="playerOne"></div>' && square[3].innerHTML === '<div class="playerOne"></div>' && square[6].innerHTML === '<div class="playerOne"></div>'
+    || square[1].innerHTML === '<div class="playerOne"></div>' && square[4].innerHTML === '<div class="playerOne"></div>' && square[7].innerHTML === '<div class="playerOne"></div>'
+    || square[2].innerHTML === '<div class="playerOne"></div>' && square[5].innerHTML === '<div class="playerOne"></div>' && square[8].innerHTML === '<div class="playerOne"></div>'
+    || square[0].innerHTML === '<div class="playerOne"></div>' && square[4].innerHTML === '<div class="playerOne"></div>' && square[8].innerHTML === '<div class="playerOne"></div>'
+    || square[2].innerHTML === '<div class="playerOne"></div>' && square[4].innerHTML === '<div class="playerOne"></div>' && square[6].innerHTML === '<div class="playerOne"></div>'
     )
     {
-        sessao = false;
-        vencedor = 0;
-        mostrarVencedor(vencedor);
+        session = false;
+        winner = 0;
+        showWinner(winner);
     }
-    else if (casa[0].innerHTML === '<div class="playerTwo"></div>' && casa[1].innerHTML === '<div class="playerTwo"></div>' && casa[2].innerHTML === '<div class="playerTwo"></div>'
-    || casa[3].innerHTML === '<div class="playerTwo"></div>' && casa[4].innerHTML === '<div class="playerTwo"></div>' && casa[5].innerHTML === '<div class="playerTwo"></div>'
-    || casa[6].innerHTML === '<div class="playerTwo"></div>' && casa[7].innerHTML === '<div class="playerTwo"></div>' && casa[8].innerHTML === '<div class="playerTwo"></div>'
-    || casa[0].innerHTML === '<div class="playerTwo"></div>' && casa[3].innerHTML === '<div class="playerTwo"></div>' && casa[6].innerHTML === '<div class="playerTwo"></div>'
-    || casa[1].innerHTML === '<div class="playerTwo"></div>' && casa[4].innerHTML === '<div class="playerTwo"></div>' && casa[7].innerHTML === '<div class="playerTwo"></div>'
-    || casa[2].innerHTML === '<div class="playerTwo"></div>' && casa[5].innerHTML === '<div class="playerTwo"></div>' && casa[8].innerHTML === '<div class="playerTwo"></div>'
-    || casa[0].innerHTML === '<div class="playerTwo"></div>' && casa[4].innerHTML === '<div class="playerTwo"></div>' && casa[8].innerHTML === '<div class="playerTwo"></div>'
-    || casa[2].innerHTML === '<div class="playerTwo"></div>' && casa[4].innerHTML === '<div class="playerTwo"></div>' && casa[6].innerHTML === '<div class="playerTwo"></div>')
+    else if (square[0].innerHTML === '<div class="playerTwo"></div>' && square[1].innerHTML === '<div class="playerTwo"></div>' && square[2].innerHTML === '<div class="playerTwo"></div>'
+    || square[3].innerHTML === '<div class="playerTwo"></div>' && square[4].innerHTML === '<div class="playerTwo"></div>' && square[5].innerHTML === '<div class="playerTwo"></div>'
+    || square[6].innerHTML === '<div class="playerTwo"></div>' && square[7].innerHTML === '<div class="playerTwo"></div>' && square[8].innerHTML === '<div class="playerTwo"></div>'
+    || square[0].innerHTML === '<div class="playerTwo"></div>' && square[3].innerHTML === '<div class="playerTwo"></div>' && square[6].innerHTML === '<div class="playerTwo"></div>'
+    || square[1].innerHTML === '<div class="playerTwo"></div>' && square[4].innerHTML === '<div class="playerTwo"></div>' && square[7].innerHTML === '<div class="playerTwo"></div>'
+    || square[2].innerHTML === '<div class="playerTwo"></div>' && square[5].innerHTML === '<div class="playerTwo"></div>' && square[8].innerHTML === '<div class="playerTwo"></div>'
+    || square[0].innerHTML === '<div class="playerTwo"></div>' && square[4].innerHTML === '<div class="playerTwo"></div>' && square[8].innerHTML === '<div class="playerTwo"></div>'
+    || square[2].innerHTML === '<div class="playerTwo"></div>' && square[4].innerHTML === '<div class="playerTwo"></div>' && square[6].innerHTML === '<div class="playerTwo"></div>')
     {
-        sessao = false;
-        vencedor = 1;
-        mostrarVencedor(vencedor);
+        session = false;
+        winner = 1;
+        showWinner(winner);
+    }
+    else if (square[0].hasChildNodes() && square[1].hasChildNodes() && square[2].hasChildNodes() 
+    && square[3].hasChildNodes() && square[4].hasChildNodes() && square[5].hasChildNodes()
+    && square[6].hasChildNodes() && square[7].hasChildNodes() && square[8].hasChildNodes() && session == true)
+    {
+        winner = null;
+        session = false;
+        showWinner(winner);
     }
 }
 
-casa[0].addEventListener ('click', function () {
+square[0].addEventListener ('click', function () {
 
-    if(casa[0].innerHTML === '<div class="playerOne"></div>' || casa[0].innerHTML === '<div class="playerTwo"></div>' || sessao == false)
+    if(square[0].innerHTML === '<div class="playerOne"></div>' || square[0].innerHTML === '<div class="playerTwo"></div>' || session == false)
     {
-        jogada = false;
+        flag = false;
     }
     else
     {
         let playerAtual = document.createElement('div');
         
-        changeColor(sortear);
+        changeColor(draw);
 
-        if (sortear == 0)
+        if (draw == 0)
         {
             playerAtual.classList.add('playerOne');
-            sortear = 1;
+            draw = 1;
         }
         else
         {
             playerAtual.classList.add('playerTwo');
-            sortear = 0;
+            draw = 0;
         }
 
-        casa[0].appendChild(playerAtual);
+        square[0].appendChild(playerAtual);
     }
 
     verificarVitoria();
 });
 
-casa[1].addEventListener ('click', function () {
+square[1].addEventListener ('click', function () {
 
-    if(casa[1].innerHTML === '<div class="playerOne"></div>' || casa[1].innerHTML === '<div class="playerTwo"></div>' || sessao == false)
+    if(square[1].innerHTML === '<div class="playerOne"></div>' || square[1].innerHTML === '<div class="playerTwo"></div>' || session == false)
     {
-        jogada = false;
+        flag = false;
     }
     else
     {
         let playerAtual = document.createElement('div');
 
-        changeColor(sortear);
+        changeColor(draw);
         
-        if (sortear == 0)
+        if (draw == 0)
         {
             playerAtual.classList.add('playerOne');
-            sortear = 1;
+            draw = 1;
         }
         else
         {
             playerAtual.classList.add('playerTwo');
-            sortear = 0;
+            draw = 0;
         }
 
-        casa[1].appendChild(playerAtual);
+        square[1].appendChild(playerAtual);
     }
 
     verificarVitoria();
 });
 
-casa[2].addEventListener ('click', function () {
+square[2].addEventListener ('click', function () {
 
-    if(casa[2].innerHTML === '<div class="playerOne"></div>' || casa[2].innerHTML === '<div class="playerTwo"></div>' || sessao == false)
+    if(square[2].innerHTML === '<div class="playerOne"></div>' || square[2].innerHTML === '<div class="playerTwo"></div>' || session == false)
     {
-        jogada = false;
+        flag = false;
     }
     else
     {
         let playerAtual = document.createElement('div');
 
-        changeColor(sortear);
+        changeColor(draw);
         
-        if (sortear == 0)
+        if (draw == 0)
         {
             playerAtual.classList.add('playerOne');
-            sortear = 1;
+            draw = 1;
         }
         else
         {
             playerAtual.classList.add('playerTwo');
-            sortear = 0;
+            draw = 0;
         }
 
-        casa[2].appendChild(playerAtual);
+        square[2].appendChild(playerAtual);
     }
 
     verificarVitoria();
 });
 
-casa[3].addEventListener ('click', function () {
+square[3].addEventListener ('click', function () {
 
-    if(casa[3].innerHTML === '<div class="playerOne"></div>' || casa[3].innerHTML === '<div class="playerTwo"></div>' || sessao == false)
+    if(square[3].innerHTML === '<div class="playerOne"></div>' || square[3].innerHTML === '<div class="playerTwo"></div>' || session == false)
     {
-        jogada = false;
+        flag = false;
     }
     else
     {
         let playerAtual = document.createElement('div');
 
-        changeColor(sortear);
+        changeColor(draw);
         
-        if (sortear == 0)
+        if (draw == 0)
         {
             playerAtual.classList.add('playerOne');
-            sortear = 1;
+            draw = 1;
         }
         else
         {
             playerAtual.classList.add('playerTwo');
-            sortear = 0;
+            draw = 0;
         }
 
-        casa[3].appendChild(playerAtual);
+        square[3].appendChild(playerAtual);
     }
 
     verificarVitoria();
 });
 
-casa[4].addEventListener ('click', function () {
+square[4].addEventListener ('click', function () {
 
-    if(casa[4].innerHTML === '<div class="playerOne"></div>' || casa[4].innerHTML === '<div class="playerTwo"></div>' || sessao == false)
+    if(square[4].innerHTML === '<div class="playerOne"></div>' || square[4].innerHTML === '<div class="playerTwo"></div>' || session == false)
     {
-        jogada = false;
+        flag = false;
     }
     else
     {
         let playerAtual = document.createElement('div');
 
-        changeColor(sortear);
+        changeColor(draw);
         
-        if (sortear == 0)
+        if (draw == 0)
         {
             playerAtual.classList.add('playerOne');
-            sortear = 1;
+            draw = 1;
         }
         else
         {
             playerAtual.classList.add('playerTwo');
-            sortear = 0;
+            draw = 0;
         }
 
-        casa[4].appendChild(playerAtual);
+        square[4].appendChild(playerAtual);
     }
 
     verificarVitoria();
 });
 
-casa[5].addEventListener ('click', function () {
+square[5].addEventListener ('click', function () {
 
-    if(casa[5].innerHTML === '<div class="playerOne"></div>' || casa[5].innerHTML === '<div class="playerTwo"></div>' || sessao == false)
+    if(square[5].innerHTML === '<div class="playerOne"></div>' || square[5].innerHTML === '<div class="playerTwo"></div>' || session == false)
     {
-        jogada = false;
+        flag = false;
     }
     else
     {
         let playerAtual = document.createElement('div');
 
-        changeColor(sortear);
+        changeColor(draw);
         
-        if (sortear == 0)
+        if (draw == 0)
         {
             playerAtual.classList.add('playerOne');
-            sortear = 1;
+            draw = 1;
         }
         else
         {
             playerAtual.classList.add('playerTwo');
-            sortear = 0;
+            draw = 0;
         }
 
-        casa[5].appendChild(playerAtual);
+        square[5].appendChild(playerAtual);
     }
 
     verificarVitoria();
 });
 
-casa[6].addEventListener ('click', function () {
+square[6].addEventListener ('click', function () {
 
-    if(casa[6].innerHTML === '<div class="playerOne"></div>' || casa[6].innerHTML === '<div class="playerTwo"></div>' || sessao == false)
+    if(square[6].innerHTML === '<div class="playerOne"></div>' || square[6].innerHTML === '<div class="playerTwo"></div>' || session == false)
     {
-        jogada = false;
+        flag = false;
     }
     else
     {
         let playerAtual = document.createElement('div');
 
-        changeColor(sortear);
+        changeColor(draw);
         
-        if (sortear == 0)
+        if (draw == 0)
         {
             playerAtual.classList.add('playerOne');
-            sortear = 1;
+            draw = 1;
         }
         else
         {
             playerAtual.classList.add('playerTwo');
-            sortear = 0;
+            draw = 0;
         }
 
-        casa[6].appendChild(playerAtual);
+        square[6].appendChild(playerAtual);
     }
 
     verificarVitoria();
 });
 
-casa[7].addEventListener ('click', function () {
+square[7].addEventListener ('click', function () {
 
-    if(casa[7].innerHTML === '<div class="playerOne"></div>' || casa[7].innerHTML === '<div class="playerTwo"></div>' || sessao == false)
+    if(square[7].innerHTML === '<div class="playerOne"></div>' || square[7].innerHTML === '<div class="playerTwo"></div>' || session == false)
     {
-        jogada = false;
+        flag = false;
     }
     else
     {
         let playerAtual = document.createElement('div');
 
-        changeColor(sortear);
+        changeColor(draw);
         
-        if (sortear == 0)
+        if (draw == 0)
         {
             playerAtual.classList.add('playerOne');
-            sortear = 1;
+            draw = 1;
         }
         else
         {
             playerAtual.classList.add('playerTwo');
-            sortear = 0;
+            draw = 0;
         }
 
-        casa[7].appendChild(playerAtual);
+        square[7].appendChild(playerAtual);
     }
 
     verificarVitoria();
 });
 
-casa[8].addEventListener ('click', function () {
+square[8].addEventListener ('click', function () {
 
-    if(casa[8].innerHTML === '<div class="playerOne"></div>' || casa[8].innerHTML === '<div class="playerTwo"></div>' || sessao == false)
+    if(square[8].innerHTML === '<div class="playerOne"></div>' || square[8].innerHTML === '<div class="playerTwo"></div>' || session == false)
     {
-        jogada = false;
+        flag = false;
     }
     else
     {
         let playerAtual = document.createElement('div');
 
-        changeColor(sortear);
+        changeColor(draw);
         
-        if (sortear == 0)
+        if (draw == 0)
         {
             playerAtual.classList.add('playerOne');
-            sortear = 1;
+            draw = 1;
         }
         else
         {
             playerAtual.classList.add('playerTwo');
-            sortear = 0;
+            draw = 0;
         }
 
-        casa[8].appendChild(playerAtual);
+        square[8].appendChild(playerAtual);
     }
 
     verificarVitoria();
