@@ -10,24 +10,39 @@
 </head>
 <body>
     <main>
-        <div id="tabuleiro">
-            <div class="fileira">
-                <div class="casa" id="casa1"></div>
-                <div class="casa" id="casa2"></div>
-                <div class="casa" id="casa3"></div>
-            </div>
-            <div class="fileira">
-                <div class="casa" id="casa4"></div>
-                <div class="casa" id="casa5"></div>
-                <div class="casa" id="casa6"></div>
-            </div>
-            <div class="fileira">
-                <div class="casa" id="casa7"></div>
-                <div class="casa" id="casa8"></div>
-                <div class="casa" id="casa9"></div>
+        <div id="title">
+            <h1>Jogo da Velha</h1>
+        </div>
+        <div class="tabuleiro-container">
+            <div id="tabuleiro">
+                <div class="fileira">
+                    <div class="casa" id="casa1"></div>
+                    <div class="casa" id="casa2"></div>
+                    <div class="casa" id="casa3"></div>
+                </div>
+                <div class="fileira">
+                    <div class="casa" id="casa4"></div>
+                    <div class="casa" id="casa5"></div>
+                    <div class="casa" id="casa6"></div>
+                </div>
+                <div class="fileira">
+                    <div class="casa" id="casa7"></div>
+                    <div class="casa" id="casa8"></div>
+                    <div class="casa" id="casa9"></div>
+                </div>
             </div>
         </div>
-        <div>
+        <div class="player-container">
+            <div class="player" id="player1">
+                <div id ="player1-o" class="player-name">Player 1</div>
+                <div id="player-o" class="figure">O</div>
+            </div>
+            <div class="player" id="player2">
+                <div id ="player-name-x" class="player-name">Player 2</div>
+                <div id="player-x" class="figure">X</div>
+            </div>
+        </div>
+        <div class="btn-container">
             <button id="btn-reiniciar">Reiniciar</button>
         </div>
     </main>
